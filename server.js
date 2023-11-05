@@ -1,12 +1,12 @@
 import express from 'express'
 import dotenv from 'dotenv'
 dotenv.config()
-import {router} from "./route/catagoryRoute.js"
+import {router} from "./route/catagory.js"
 const port = process.env.PORT || 5000
 const app = express()
 app.use(express.json())
 app.use('/api',router)
 
 app.listen(port,(req,res)=> {
-    console.log("what is happening here")
+    console.log(`server running ${port}`)
 })
