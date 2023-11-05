@@ -7,6 +7,6 @@ const app = express()
 app.use(express.json())
 app.use('/api',router)
 
-app.listen(5000,(req,res)=> {
+app.listen(port,(req,res)=> {
     console.log("what is happening here")
 })
