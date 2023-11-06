@@ -1,8 +1,8 @@
 import express from 'express'
 import dotenv from 'dotenv'
 dotenv.config()
-import categoryRouter from "./route/category.js"
-import questionRouter from "./route/question.js"
+import categoryRouter from "./route/categoryRoute.js"
+import questionRouter from "./route/questionRoute.js"
 import connectDB from './config/db.js'
 
 connectDB()
