@@ -3,6 +3,10 @@ import dotenv from 'dotenv'
 dotenv.config()
 import categoryRouter from "./route/category.js"
 import questionRouter from "./route/question.js"
+import connectDB from './config/db.js'
+
+connectDB()
+
 const port = process.env.PORT || 5000
 const app = express()
 app.use(express.json())
