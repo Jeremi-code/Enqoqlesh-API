@@ -13,6 +13,6 @@ app.use(express.json())
 app.use(categoryRouter)
 app.use(questionRouter)
 
-app.listen(port,(req,res)=> {
+app.listen(port,()=> {
     console.log(`server running ${port}`)
 })
