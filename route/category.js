@@ -1,20 +1,20 @@
 import express from 'express'
 const router = express.Router()
 
-router.get('/catagories',(req,res)=> {
+router.get('/categories',(req,res)=> {
     res.send('get all catagories')
 })
-router.get('/catagory:number',(req,res) => {
-    console.log(req.param.number)
-    res.send(req.param.number)
+router.get('/category/:category',(req,res) => {
+    console.log(req.param.category)
+    res.send(req.param.category)
 })
-router.post('/catagory',(req,res) => {
+router.post('/category',(req,res) => {
     res.send(req.body)
 })
-router.put('/catagory',(req,res)=> {
+router.put('/category',(req,res)=> {
     res.send('data updated succssfuly')
 })
-router.delete('/catagory',(req,res) => {
+router.delete('/category',(req,res) => {
     res.send('data deleted successfully')
 })
 
