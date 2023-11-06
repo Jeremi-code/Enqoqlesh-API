@@ -18,4 +18,4 @@ router.delete('/catagory',(req,res) => {
     res.send('data deleted successfully')
 })
 
-module.exports = router
+export default router
