@@ -1,8 +1,8 @@
-import Category from '../models/category.js';
+import CategoryModel from '../model/category.js';
 
 const getCategories = async (req, res) => {
     try {
-        const categories = await Category.find();
+        const categories = await CategoryModel.find();
         res.status(200).json(categories);
     } catch (error) {
         res.status(404).json({ message: error.message });
@@ -10,7 +10,7 @@ const getCategories = async (req, res) => {
 };
 const getCategoryById = async (req, res) => {
     try {
-        const category = await Category.findById(req.params.id);
+        const category = await CategoryModel.findById(req.params.id);
         res.status(200).json(category); 
     } catch (error) {
         res.status(404).json({ message: error.message });
@@ -19,7 +19,7 @@ const getCategoryById = async (req, res) => {
 const registerCategory = async (req, res) => {
     try {
         const { name, description } = req.body;
-        const category = new Category({
+        const category = new CategoryModel({
             name,
             description
         });
@@ -32,7 +32,7 @@ const registerCategory = async (req, res) => {
 const updateCategory = async (req, res) => {
     try {
         const { name, description } = req.body;
-        const category = await Category.findById(req.params.id);
+        const category = await CategoryModel.findById(req.params.id);
         if (category) {
             category.name = name;
             category.description = description;
@@ -45,7 +45,7 @@ const updateCategory = async (req, res) => {
 }
 const deleteCategory = async (req,res) => {
     try {
-        const category = await Category.findById(req.params.id);
+        const category = await CategoryModel.findById(req.params.id);
         if(category) {
             category.remove();
             res.status(200).json({ message: 'Category deleted successfully' });
@@ -57,3 +57,5 @@ const deleteCategory = async (req,res) => {
         res.status(404).json({ message: error.message });
     }
 }
+
+export default { getCategories, getCategoryById, registerCategory, updateCategory, deleteCategory };
