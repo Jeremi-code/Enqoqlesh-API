@@ -14,6 +14,14 @@ const questionSchema = new mongoose.Schema({
         type: mongoose.schema.Types.ObjectId,
         ref : answer,
         required: true
+    },
+    createdAt : {
+        type : Date,
+        Default : Date.now
+    },
+    updatedAt : {
+        type : Date,
+        Default : Date.now
     }
 });
 
