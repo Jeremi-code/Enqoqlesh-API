@@ -1,5 +1,5 @@
 import express from 'express'
-const router = express.Router()
+const categoryRouter = express.Router()
 
 router.get('/categories',(req,res)=> {
     res.send('get all catagories')
@@ -18,4 +18,4 @@ router.delete('/category',(req,res) => {
     res.send('data deleted successfully')
 })
 
-export default router
+export default categoryRouter
