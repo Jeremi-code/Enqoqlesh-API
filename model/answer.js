@@ -20,3 +20,5 @@ const answerSchema = mongoose.Schema ({
 })
 
 const answerModel = mongoose.model('Answer', answerSchema)
+
+export default answerModel
