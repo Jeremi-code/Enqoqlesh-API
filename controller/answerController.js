@@ -52,3 +52,16 @@ const updateAnswer = async (req, res) => {
         res.status(404).json({ message: error.message });
     }
 }
+const deleteAnswer = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const answer = await AnswerModel.findById(id);
+        if (answer) {
+            answer.deleteOne({ _id: id });
+        } else {
+            res.status(404).json({ message: 'Answer not found' });
+        }
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+}
