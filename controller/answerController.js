@@ -36,3 +36,19 @@ const registerAnswer = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 }
+const updateAnswer = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const { text, description } = req.body;
+        const answer = await AnswerModel.findById(id);
+        if (answer) {
+            answer.text = text || answer.text;
+            answer.description = description || answer.description;
+            answer.updatedAt = new Date().toISOString();
+        } else {
+            res.status(404).json({ message: 'Answer not found' });
+        }
+    } catch(error) {
+        res.status(404).json({ message: error.message });
+    }
+}
