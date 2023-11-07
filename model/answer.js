@@ -1,13 +1,12 @@
 import mongoose from 'mongoose'
 const AnswerSchema = mongoose.Schema ({
-    answer: {
+    text: {
         type: String,
         required: true
     },
-    category: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Category',
-        required: true
+    description : {
+        type: String,
+        required: false
     },
     createdAt: {
         type: Date,
