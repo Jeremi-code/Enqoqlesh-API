@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-const answerSchema = mongoose.Schema ({
+const AnswerSchema = mongoose.Schema ({
     answer: {
         type: String,
         required: true
@@ -19,6 +19,6 @@ const answerSchema = mongoose.Schema ({
     }
 })
 
-const answerModel = mongoose.model('Answer', answerSchema)
+const AnswerModel = mongoose.model('Answer', AnswerSchema)
 
-export default answerModel
+export default AnswerModel
