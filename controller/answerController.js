@@ -65,3 +65,5 @@ const deleteAnswer = async (req, res) => {
         res.status(404).json({ message: error.message });
     }
 }
+
+export { getAnswer, getAnswers, registerAnswer, updateAnswer, deleteAnswer}
