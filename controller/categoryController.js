@@ -58,4 +58,4 @@ const deleteCategory = async (req,res) => {
     }
 }
 
-export default { getCategories, getCategoryById, registerCategory, updateCategory, deleteCategory };
+export  { getCategories, getCategoryById, registerCategory, updateCategory, deleteCategory };
