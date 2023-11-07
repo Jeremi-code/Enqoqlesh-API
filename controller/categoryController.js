@@ -21,7 +21,9 @@ const registerCategory = async (req, res) => {
         const { name, description } = req.body;
         const category = new CategoryModel({
             name,
-            description
+            description,
+            createdAt: new Date().toISOString(),
+            updateAt: new Date().toISOString()
         });
         const createdCategory = await category.save();
         res.status(201).json(createdCategory);
@@ -34,8 +36,9 @@ const updateCategory = async (req, res) => {
         const { name, description } = req.body;
         const category = await CategoryModel.findById(req.params.id);
         if (category) {
-            category.name = name;
-            category.description = description;
+            category.name = name || category.name;
+            category.description = description || category.description;
+            category.updatedAt = new Date().toISOString();
         }
         const updatedCategory = await category.save();
         res.status(200).json(updatedCategory);
