@@ -24,14 +24,19 @@ const getQuestions = async (req, res) => {
 const registerQuestion = async (req, res) => {
     try {
         const { text, category , answer } = req.body;
-        const question = new QuestionModel({
-        text,
-        description,
-        createdAt: new Date().toISOString(),
-        updateAt: new Date().toISOString(),
-        });
-        const createdQuestion = await question.save();
-        res.status(201).json(createdQuestion);
+        const categoryID = await getCategoryObjectId(req, res);
+        const answerID = await getAnswerObjectId(req, res);
+        if ( categoryID && answerID ) {
+            const question = new QuestionModel({
+            text,
+            category : categoryID,
+            answer : answerID,
+            createdAt: new Date().toISOString(),
+            updateAt: new Date().toISOString(),
+            });
+            const createdQuestion = await question.save();
+            res.status(201).json(createdQuestion);
+    }
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
