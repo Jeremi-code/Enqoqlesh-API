@@ -36,3 +36,16 @@ const registerQuestion = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
     }
+
+const getAnswerObjectId = async (req, res) => {
+    try {
+        const answer = await AnswerModel.find({text : req.body.answer});
+        if ( answer ) {
+            return answer._id;
+        }
+        res.status(404).json({ message: "Answer or Category not found" });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+    }
+
