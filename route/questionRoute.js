@@ -1,6 +1,5 @@
 import express from 'express'
 import { getQuestions,getQuestion,registerQuestion,updateQuestion,deleteQuestion} from '../controller/questionController.js'
-import { get } from 'http'
 const questionRouter = express.Router()
 
 questionRouter.get('/category/:category/questions',getQuestions)
