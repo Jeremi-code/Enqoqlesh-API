@@ -1,0 +1,8 @@
+# IDE Configuration
+.vscode/
+
+# Project Dependencies
+node_modules/
+
+# Environment Variables
+.env
