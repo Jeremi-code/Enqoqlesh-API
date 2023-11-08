@@ -4,6 +4,7 @@ dotenv.config()
 import categoryRouter from "./route/categoryRoute.js"
 import questionRouter from "./route/questionRoute.js"
 import connectDB from './config/db.js'
+import answerRouter from './route/answerRoute.js'
 
 connectDB()
 
@@ -12,6 +13,7 @@ const app = express()
 app.use(express.json())
 app.use(categoryRouter)
 app.use(questionRouter)
+app.use(answerRouter)
 
 app.listen(port,()=> {
     console.log(`server running ${port}`)
