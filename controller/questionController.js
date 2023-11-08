@@ -66,3 +66,18 @@ const getCategoryObjectId = async (req, res) => {
     }
 }
 
+const updateQuestion = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const { text } = req.body;
+        const question = await QuestionModel.findById(id);
+        if (question) {
+            question.text = text || question.text;
+            question.updatedAt = new Date().toISOString();
+        } else {
+            res.status(404).json({ message: "Question not found" });
+        }
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+    }
