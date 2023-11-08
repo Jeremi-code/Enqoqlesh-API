@@ -23,7 +23,7 @@ const getQuestions = async (req, res) => {
     }
 const registerQuestion = async (req, res) => {
     try {
-        const { text, category , answer } = req.body;
+        const { text } = req.body;
         const categoryID = await getCategoryObjectId(req, res);
         const answerID = await getAnswerObjectId(req, res);
         if ( categoryID && answerID ) {
