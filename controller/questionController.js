@@ -81,3 +81,17 @@ const updateQuestion = async (req, res) => {
         res.status(404).json({ message: error.message });
     }
     }
+const deleteQuestion = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const question = await QuestionModel.findById(id);
+        if (question) {
+            question.deleteOne({ _id: id });
+        } else {
+            res.status(404).json({ message: "Question not found" });
+        }
+    }
+    catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+    }
