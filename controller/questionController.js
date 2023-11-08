@@ -47,5 +47,17 @@ const getAnswerObjectId = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
+}
+
+const getCategoryObjectId = async (req, res) => {
+    try {
+        const category = await CategoryModel.find({name : req.body.category});
+        if ( category ) {
+            return category._id;
+        }
+        res.status(404).json({ message: "Answer or Category not found" });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
     }
+}
 
