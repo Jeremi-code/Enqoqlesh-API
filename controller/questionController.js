@@ -1,4 +1,6 @@
 import QuestionModel from "../model/question";
+import CategoryModel from "../model/category";
+import AnswerModel from "../model/answer";
 
 const getQuestion = (req, res) => {
   try {
