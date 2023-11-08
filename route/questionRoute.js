@@ -1,20 +1,12 @@
 import express from 'express'
+import { getQuestions,getQuestion,registerQuestion,updateQuestion,deleteQuestion} from '../controller/questionController.js'
+import { get } from 'http'
 const questionRouter = express.Router()
 
-questionRouter.get('/category/:category/questions',(req,res) => {
-
-})
-questionRouter.get('/category/:category/question/:id',(req,res) => {
-    
-})
-questionRouter.post('/category/:category/question',(req,res) => {
-    
-})
-questionRouter.put('/category/:category/question/:id',(req,res) => {
-    
-})
-questionRouter.delete('/category/:category/question/:id',(req,res) => {
-    
-})
+questionRouter.get('/category/:category/questions',getQuestions)
+questionRouter.get('/category/:category/question/:id',getQuestion)
+questionRouter.post('/category/:category/question',registerQuestion)
+questionRouter.put('/category/:category/question/:id',updateQuestion)
+questionRouter.delete('/category/:category/question/:id',deleteQuestion)
 
 export default questionRouter
