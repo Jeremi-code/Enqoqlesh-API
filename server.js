@@ -8,13 +8,14 @@ import answerRouter from './route/answerRoute.js'
 
 connectDB()
 
-const port = process.env.PORT || 5000
+const PORT = process.env.PORT || 5000
 const app = express()
+
 app.use(express.json())
 app.use(categoryRouter)
 app.use(questionRouter)
 app.use(answerRouter)
 
-app.listen(port,()=> {
-    console.log(`server running ${port}`)
+app.listen(PORT,()=> {
+    console.log(`Server running on PORT: ${PORT}`)
 })
