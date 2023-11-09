@@ -25,9 +25,9 @@ const getQuestions = async (req, res) => {
 };
 const registerQuestion = async (req, res) => {
   try {
-    const { text } = req.body;
-    const categoryID = await getCategoryObjectId(req, res);
-    const answerID = await getAnswerObjectId(req, res);
+    const { text,answer,category } = req.body;
+    const categoryID = await getCategoryObjectId(category);
+    const answerID = await getAnswerObjectId(answer);
     if (categoryID && answerID) {
       const question = new QuestionModel({
         text,
@@ -44,9 +44,9 @@ const registerQuestion = async (req, res) => {
   }
 };
 
-const getAnswerObjectId = async (req, res) => {
+const getAnswerObjectId = async (answers) => {
   try {
-    const answer = await AnswerModel.find({ text: req.body.answer });
+    const answer = await AnswerModel.findOne({ text: answers });
     if (answer) {
       return answer._id;
     }
@@ -56,9 +56,9 @@ const getAnswerObjectId = async (req, res) => {
   }
 };
 
-const getCategoryObjectId = async (req, res) => {
+const getCategoryObjectId = async (categorys) => {
   try {
-    const category = await CategoryModel.find({ name: req.body.category });
+    const category = await CategoryModel.findOne({ name: categorys });
     if (category) {
       return category._id;
     }
@@ -68,7 +68,7 @@ const getCategoryObjectId = async (req, res) => {
   }
 };
 
-const updateQuestion = async (req, res) => {
+const updateQuestion = async (req, re) => {
   try {
     const id = req.params.id;
     const { text } = req.body;
