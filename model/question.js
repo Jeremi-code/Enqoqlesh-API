@@ -1,4 +1,7 @@
 import mongoose from 'mongoose'
+import CategoryModel from '../model/category.js'
+import AnswerModel from '../model/answer.js'
+
 
 const QuestionSchema =  mongoose.Schema({
     text: {
@@ -7,12 +10,12 @@ const QuestionSchema =  mongoose.Schema({
     },
     category: {
         type: mongoose.Schema.Types.ObjectId,
-        ref : category,
+        ref : CategoryModel,
         required: true
     },
     answer: {
         type: mongoose.Schema.Types.ObjectId,
-        ref : answer,
+        ref : AnswerModel,
         required: true
     },
     createdAt : {
