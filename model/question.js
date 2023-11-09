@@ -6,12 +6,12 @@ const QuestionSchema =  mongoose.Schema({
         required: true
     },
     category: {
-        type: mongoose.schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref : category,
         required: true
     },
     answer: {
-        type: mongoose.schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref : answer,
         required: true
     },
