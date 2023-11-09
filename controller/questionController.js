@@ -1,6 +1,6 @@
-import QuestionModel from "../model/question";
-import CategoryModel from "../model/category";
-import AnswerModel from "../model/answer";
+import QuestionModel from "../model/question.js";
+import CategoryModel from "../model/category.js";
+import AnswerModel from "../model/answer.js";
 
 const getQuestion = (req, res) => {
   try {
