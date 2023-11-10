@@ -11,8 +11,8 @@ const categoryRouter = express.Router();
 
 categoryRouter.get("/categories", getCategories);
 categoryRouter.get("/category/:category", getCategory);
-categoryRouter.post("/category",apiKeyMiddleware, registerCategory);
-categoryRouter.put("/category/:category", updateCategory);
-categoryRouter.delete("/category/:category", deleteCategory);
+categoryRouter.post("/category", apiKeyMiddleware, registerCategory);
+categoryRouter.put("/category/:category", apiKeyMiddleware, updateCategory);
+categoryRouter.delete("/category/:category", apiKeyMiddleware, deleteCategory);
 
 export default categoryRouter;
