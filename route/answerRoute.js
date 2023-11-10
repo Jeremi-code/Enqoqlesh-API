@@ -7,10 +7,11 @@ import {
   updateAnswer,
   deleteAnswer,
 } from "../controller/answerController.js";
+import { apiKeyMiddleware} from "../middleware/authMiddleware.js";
 answerRouter.get("/answers", getAnswers);
 answerRouter.get("/answer/:id", getAnswer);
-answerRouter.post("/answer", registerAnswer);
-answerRouter.put("/answer/:id", updateAnswer);
-answerRouter.delete("/answer/:id", deleteAnswer);
+answerRouter.post("/answer", apiKeyMiddleware, registerAnswer);
+answerRouter.put("/answer/:id", apiKeyMiddleware, updateAnswer);
+answerRouter.delete("/answer/:id", apiKeyMiddleware, deleteAnswer);
 
 export default answerRouter;
