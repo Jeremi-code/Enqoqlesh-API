@@ -10,7 +10,7 @@ const getCategories = async (req, res) => {
 };
 const getCategory = async (req, res) => {
     try {
-        const category = await CategoryModel.findOne({ name : req.params.name });
+        const category = await CategoryModel.findOne({ name : req.params.category });
         res.status(200).json(category); 
     } catch (error) {
         res.status(404).json({ message: error.message });
@@ -34,7 +34,7 @@ const registerCategory = async (req, res) => {
 const updateCategory = async (req, res) => {
     try {
         const { name, description } = req.body;
-        const category = await CategoryModel.findById(req.params.id);
+        const category = await CategoryModel.findOne({ name : req.params.category});
         if (category) {
             category.name = name || category.name;
             category.description = description || category.description;
@@ -48,7 +48,7 @@ const updateCategory = async (req, res) => {
 }
 const deleteCategory = async (req,res) => {
     try {
-        const category = await CategoryModel.findById(req.params.id);
+        const category = await CategoryModel.findOne({ name : req.params.category });
         if(category) {
             category.remove();
             res.status(200).json({ message: 'Category deleted successfully' });
