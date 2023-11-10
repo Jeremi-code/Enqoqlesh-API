@@ -25,10 +25,9 @@ const getQuestions = async (req, res) => {
 };
 const registerQuestion = async (req, res) => {
   try {
-    const { text,answer } = req.body;
-    const category = req.params.category;
-    const categoryID = await getCategoryObjectId(category);
-    const answerID = await getAnswerObjectId(answer);
+    const { text } = req.body;
+    const categoryID = await getCategoryObjectId(req, res);
+    const answerID = await getAnswerObjectId(req, res);
     if (categoryID && answerID) {
       const question = new QuestionModel({
         text,
@@ -45,9 +44,9 @@ const registerQuestion = async (req, res) => {
   }
 };
 
-const getAnswerObjectId = async (answers) => {
+const getAnswerObjectId = async (req,res) => {
   try {
-    const answer = await AnswerModel.findOne({ text: answers });
+    const answer = await AnswerModel.findOne({ text: req.body.answer });
     if (answer) {
       return answer._id;
     }
@@ -57,9 +56,9 @@ const getAnswerObjectId = async (answers) => {
   }
 };
 
-const getCategoryObjectId = async (categorys) => {
+const getCategoryObjectId = async (req,res) => {
   try {
-    const category = await CategoryModel.findOne({ name: categorys });
+    const category = await CategoryModel.findOne({ name: req.params.category });
     if (category) {
       return category._id;
     }
