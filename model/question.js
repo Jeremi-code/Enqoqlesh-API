@@ -6,6 +6,7 @@ import AnswerModel from '../model/answer.js'
 const QuestionSchema =  mongoose.Schema({
     text: {
         type: String,
+        unique : true,
         required: true
     },
     category: {
