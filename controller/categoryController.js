@@ -8,9 +8,9 @@ const getCategories = async (req, res) => {
         res.status(404).json({ message: error.message });
     }
 };
-const getCategoryById = async (req, res) => {
+const getCategory = async (req, res) => {
     try {
-        const category = await CategoryModel.findById(req.params.id);
+        const category = await CategoryModel.findOne({ name : req.params.name });
         res.status(200).json(category); 
     } catch (error) {
         res.status(404).json({ message: error.message });
@@ -61,4 +61,4 @@ const deleteCategory = async (req,res) => {
     }
 }
 
-export  { getCategories, getCategoryById, registerCategory, updateCategory, deleteCategory };
+export  { getCategories, getCategory, registerCategory, updateCategory, deleteCategory };
