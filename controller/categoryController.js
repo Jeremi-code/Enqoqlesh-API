@@ -41,7 +41,7 @@ const updateCategory = async (req, res) => {
             category.updatedAt = new Date().toISOString();
         }
         const updatedCategory = await category.save();
-        res.status(200).json(updatedCategory);
+        res.status(200).json({message : "Category updated successfully " , data : updatedCategory});
     } catch (error) {
         res.status(404).json({ message: error.message });
     }
@@ -51,7 +51,7 @@ const deleteCategory = async (req,res) => {
         const category = await CategoryModel.findOne({ name : req.params.category });
         if(category) {
             category.remove();
-            res.status(200).json({ message: 'Category deleted successfully' });
+            res.status(200).json({ message: 'Category deleted successfully'});
         }
         else {
             res.status(404).json({ message: 'Category not found' });
