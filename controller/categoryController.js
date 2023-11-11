@@ -3,7 +3,7 @@ import CategoryModel from '../model/category.js';
 const getCategories = async (req, res) => {
     try {
         const categories = await CategoryModel.find();
-        res.status(200).json(categories);
+        res.status(200).json({ message : "Categories fetched successfully" , data : categories});
     } catch (error) {
         res.status(404).json({ message: error.message });
     }
