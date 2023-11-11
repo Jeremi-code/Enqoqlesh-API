@@ -11,7 +11,7 @@ const getCategories = async (req, res) => {
 const getCategory = async (req, res) => {
     try {
         const category = await CategoryModel.findOne({ name : req.params.category });
-        res.status(200).json(category); 
+        res.status(200).json({ message : "category fetched successfully" , data : category}); 
     } catch (error) {
         res.status(404).json({ message: error.message });
     }
@@ -26,7 +26,7 @@ const registerCategory = async (req, res) => {
             updateAt: new Date().toISOString()
         });
         const createdCategory = await category.save();
-        res.status(201).json(createdCategory);
+        res.status(201).json({ message : "category created successfully " , data : createdCategory});
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
