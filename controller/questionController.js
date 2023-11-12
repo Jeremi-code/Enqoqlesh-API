@@ -7,7 +7,9 @@ const getQuestion = (req, res) => {
     const id = req.params.id;
     const question = QuestionModel.findById(id);
     if (question) {
-      res.status(200).json({ message : "Question found successfully " , data : question });
+      res
+        .status(200)
+        .json({ message: "Question found successfully ", data: question });
     } else {
       res.status(404).json({ message: "Question not found" });
     }
@@ -18,7 +20,9 @@ const getQuestion = (req, res) => {
 const getQuestions = async (req, res) => {
   try {
     const questions = await QuestionModel.find();
-    res.status(200).json({ message : "Questions found successfully " , data : questions });
+    res
+      .status(200)
+      .json({ message: "Questions found successfully ", data: questions });
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
@@ -37,14 +41,19 @@ const registerQuestion = async (req, res) => {
         updateAt: new Date().toISOString(),
       });
       const createdQuestion = await question.save();
-      res.status(201).json({message : 'Question added successfully' , data : createdQuestion});
+      res
+        .status(201)
+        .json({
+          message: "Question added successfully",
+          data: createdQuestion,
+        });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-const getAnswerObjectId = async (req,res) => {
+const getAnswerObjectId = async (req, res) => {
   try {
     const answer = await AnswerModel.findOne({ text: req.body.answer });
     if (answer) {
@@ -56,7 +65,7 @@ const getAnswerObjectId = async (req,res) => {
   }
 };
 
-const getCategoryObjectId = async (req,res) => {
+const getCategoryObjectId = async (req, res) => {
   try {
     const category = await CategoryModel.findOne({ name: req.params.category });
     if (category) {
@@ -77,7 +86,10 @@ const updateQuestion = async (req, re) => {
       question.text = text || question.text;
       question.updatedAt = new Date().toISOString();
       const updatedQuestion = await question.save();
-      res.json({message : "Question updated successfully" , data : updatedQuestion})
+      res.json({
+        message: "Question updated successfully",
+        data: updatedQuestion,
+      });
     } else {
       res.status(404).json({ message: "Question not found" });
     }
@@ -99,4 +111,10 @@ const deleteQuestion = async (req, res) => {
   }
 };
 
-export { getQuestion, getQuestions, registerQuestion, updateQuestion, deleteQuestion };
+export {
+  getQuestion,
+  getQuestions,
+  registerQuestion,
+  updateQuestion,
+  deleteQuestion,
+};
