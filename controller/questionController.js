@@ -7,7 +7,7 @@ const getQuestion = (req, res) => {
     const id = req.params.id;
     const question = QuestionModel.findById(id);
     if (question) {
-      res.status(200).json(question);
+      res.status(200).json({ message : "Question found successfully " , data : question });
     } else {
       res.status(404).json({ message: "Question not found" });
     }
@@ -18,7 +18,7 @@ const getQuestion = (req, res) => {
 const getQuestions = async (req, res) => {
   try {
     const questions = await QuestionModel.find();
-    res.status(200).json(questions);
+    res.status(200).json({ message : "Questions found successfully " , data : questions });
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
@@ -37,7 +37,7 @@ const registerQuestion = async (req, res) => {
         updateAt: new Date().toISOString(),
       });
       const createdQuestion = await question.save();
-      res.status(201).json(createdQuestion);
+      res.status(201).json({message : 'Question added successfully' , data : createdQuestion});
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -76,6 +76,8 @@ const updateQuestion = async (req, re) => {
     if (question) {
       question.text = text || question.text;
       question.updatedAt = new Date().toISOString();
+      const updatedQuestion = await question.save();
+      res.json({message : "Question updated successfully" , data : updatedQuestion})
     } else {
       res.status(404).json({ message: "Question not found" });
     }
