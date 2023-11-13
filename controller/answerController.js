@@ -72,6 +72,7 @@ const deleteAnswer = async (req, res) => {
     const answer = await AnswerModel.findById(id);
     if (answer) {
       answer.deleteOne({ _id: id });
+      res.status(200).json({message : "Answer deleted successfully"})
     } else {
       res.status(404).json({ message: "Answer not found" });
     }
