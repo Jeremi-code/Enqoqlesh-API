@@ -41,12 +41,10 @@ const registerQuestion = async (req, res) => {
         updateAt: new Date().toISOString(),
       });
       const createdQuestion = await question.save();
-      res
-        .status(201)
-        .json({
-          message: "Question added successfully",
-          data: createdQuestion,
-        });
+      res.status(201).json({
+        message: "Question added successfully",
+        data: createdQuestion,
+      });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -103,7 +101,7 @@ const deleteQuestion = async (req, res) => {
     const question = await QuestionModel.findById(id);
     if (question) {
       question.deleteOne({ _id: id });
-      res.status(200).json({message : " Question deleted successfully"})
+      res.status(200).json({ message: " Question deleted successfully" });
     } else {
       res.status(404).json({ message: "Question not found" });
     }
