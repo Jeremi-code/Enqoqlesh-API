@@ -5,6 +5,7 @@ import categoryRouter from "./route/categoryRoute.js"
 import questionRouter from "./route/questionRoute.js"
 import connectDB from './config/db.js'
 import answerRouter from './route/answerRoute.js'
+import adminRouter from './route/adminRoute.js'
 
 connectDB()
 
@@ -15,6 +16,7 @@ app.use(express.json())
 app.use(categoryRouter)
 app.use(questionRouter)
 app.use(answerRouter)
+app.use(adminRouter)
 
 app.listen(PORT,()=> {
     console.log(`Server running on PORT: ${PORT}`)
