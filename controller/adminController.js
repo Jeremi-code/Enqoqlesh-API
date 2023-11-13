@@ -15,3 +15,18 @@ const addAdmin = async (req, res) => {
   }
 };
 const generateApiKey = () => {};
+
+const removeAdmin = async (req, res) => {
+  try {
+    const API_KEY = req.headers["api-key"]
+    const admin = await AdminModel.findOne({ apiKey: API_KEY });
+    if (admin) {
+      AdminModel.deleteOne({ apiKey: API_KEY});
+      res.status(200).json({ message: "admin removed successfully" });
+    } else {
+      res.status(404).json({ message: "admin not found" });
+    }
+  } catch (error) {
+    res.status(404).json(error.message);
+  }
+};
