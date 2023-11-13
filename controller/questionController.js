@@ -59,7 +59,7 @@ const getAnswerObjectId = async (req, res) => {
     if (answer) {
       return answer._id;
     }
-    res.status(404).json({ message: "Answer or Category not found" });
+    res.status(404).json({ message: "Answer not found" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -71,7 +71,7 @@ const getCategoryObjectId = async (req, res) => {
     if (category) {
       return category._id;
     }
-    res.status(404).json({ message: "Answer or Category not found" });
+    res.status(404).json({ message: "Category not found" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -103,6 +103,7 @@ const deleteQuestion = async (req, res) => {
     const question = await QuestionModel.findById(id);
     if (question) {
       question.deleteOne({ _id: id });
+      res.status(200).json({message : " Question deleted successfully"})
     } else {
       res.status(404).json({ message: "Question not found" });
     }
