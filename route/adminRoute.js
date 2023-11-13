@@ -1,9 +1,9 @@
 import express from 'express'
 import { addAdmin,removeAdmin } from '../controller/adminController'
-import { apiKeyMiddleware } from '../middleware/authMiddleware'
+import { adminRouteMiddleware } from '../middleware/authMiddleware'
 const adminRouter = express.Router
 
-adminRouter.post('/admin',apiKeyMiddleware,addAdmin)
-adminRouter.delete('/admin/apiKey',apiKeyMiddleware,removeAdmin)
+adminRouter.post('/admin',adminRouteMiddleware,addAdmin)
+adminRouter.delete('/admin/apiKey',adminRouteMiddleware,removeAdmin)
 
 export default adminRouter
