@@ -18,7 +18,7 @@ const generateApiKey = () => {};
 
 const removeAdmin = async (req, res) => {
   try {
-    const API_KEY = req.headers["api-key"]
+    const API_KEY = req.params.apiKey
     const admin = await AdminModel.findOne({ apiKey: API_KEY });
     if (admin) {
       AdminModel.deleteOne({ apiKey: API_KEY});
