@@ -1,4 +1,5 @@
 import AdminModel from "../model/admin.js";
+import crypto from "crypto"
 const addAdmin = async (req, res) => {
   try {
     const { name } = req.body;
@@ -6,7 +7,7 @@ const addAdmin = async (req, res) => {
       name,
       apiKey: generateApiKey(),
     });
-    const addedAdmin = newAdmin.save();
+    const addedAdmin = await newAdmin.save();
     res
       .status(200)
       .json({ message: "Admin added successfully", data: addedAdmin });
@@ -14,7 +15,9 @@ const addAdmin = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
-const generateApiKey = () => {};
+const generateApiKey = () => {
+  return crypto.randomBytes(32).toString('hex');
+};
 
 const removeAdmin = async (req, res) => {
   try {
