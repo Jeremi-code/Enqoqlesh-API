@@ -34,7 +34,7 @@ const registerAnswer = async (req, res) => {
       text,
       description,
       createdAt: new Date().toISOString(),
-      updateAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
     });
     const createdAnswer = await answer.save();
     res

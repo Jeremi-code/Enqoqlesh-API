@@ -38,7 +38,7 @@ const registerQuestion = async (req, res) => {
         category: categoryID,
         answer: answerID,
         createdAt: new Date().toISOString(),
-        updateAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
       });
       const createdQuestion = await question.save();
       res.status(201).json({
