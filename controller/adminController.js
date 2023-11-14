@@ -6,6 +6,7 @@ const addAdmin = async (req, res) => {
     const newAdmin = new AdminModel({
       name,
       apiKey: generateApiKey(),
+      createdAt: new Date().toISOString()
     });
     const addedAdmin = await newAdmin.save();
     res
