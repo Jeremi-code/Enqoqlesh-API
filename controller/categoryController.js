@@ -31,7 +31,7 @@ const registerCategory = async (req, res) => {
       name,
       description,
       createdAt: new Date().toISOString(),
-      updateAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
     });
     const createdCategory = await category.save();
     res
