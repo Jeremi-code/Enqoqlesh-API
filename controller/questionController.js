@@ -2,10 +2,10 @@ import QuestionModel from "../model/question.js";
 import CategoryModel from "../model/category.js";
 import AnswerModel from "../model/answer.js";
 
-const getQuestion = (req, res) => {
+const getQuestion = async (req, res) => {
   try {
     const id = req.params.id;
-    const question = QuestionModel.findById(id);
+    const question = await QuestionModel.findById(id);
     if (question) {
       res
         .status(200)
