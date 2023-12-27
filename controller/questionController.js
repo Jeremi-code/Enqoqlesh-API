@@ -19,7 +19,10 @@ const getQuestion = async (req, res) => {
 };
 const getQuestions = async (req, res) => {
   try {
-    const questions = await QuestionModel.find();
+    const round =parseInt(req.query.round) ;
+    const categoryID = await getCategoryObjectId(req, res);
+    console.log(categoryID)
+    const questions = await QuestionModel.aggregate([{$match : {category:categoryID }},{$sample : {size:round}}]);
     res
       .status(200)
       .json({ message: "Questions found successfully ", data: questions });
