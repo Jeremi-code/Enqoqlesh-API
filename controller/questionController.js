@@ -29,11 +29,10 @@ const getQuestions = async (req, res) => {
       questions.map(async (question) => {
         return await adjustQuestionObject(question);
       })
-    );
-    console.log(_questions);
+      );
     res
       .status(200)
-      .json({ message: "Questions found successfully ", data: questions });
+      .json({ message: "Questions found successfully ", data: _questions });
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
