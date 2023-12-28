@@ -21,8 +21,11 @@ const getQuestions = async (req, res) => {
   try {
     const round =parseInt(req.query.round) ;
     const categoryID = await getCategoryObjectId(req, res);
-    console.log(categoryID)
     const questions = await QuestionModel.aggregate([{$match : {category:categoryID }},{$sample : {size:round}}]);
+  const _questions = await Promise.all(questions.map(async (question) => {
+       return await adjustQuestionObject(question)
+    }))
+  console.log(_questions)
     res
       .status(200)
       .json({ message: "Questions found successfully ", data: questions });
@@ -77,6 +80,25 @@ const getCategoryObjectId = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+const getAnswer = async (answerID) => {
+  try {
+    const answer = await AnswerModel.findById(answerID)
+    return answer.text
+  } catch (error) {
+    console.log(error.message)
+  }
+}
+
+const adjustQuestionObject = async (question) => {
+  let answer =  await getAnswer(question.answer)
+  let questionObject = {
+    _id : question._id,
+    text : question.text,
+    category : question.category,
+    answer : answer
+  }
+  return questionObject
+}
 
 const updateQuestion = async (req, re) => {
   try {
