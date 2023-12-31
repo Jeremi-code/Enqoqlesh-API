@@ -79,9 +79,9 @@ const getCategoryObjectId = async (req, res) => {
     if (category) {
       return category._id;
     }
-    res.status(404).json({ message: "Category not found" });
+    return null
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.log(error.message)
   }
 };
 const getAnswer = async (answerID) => {
