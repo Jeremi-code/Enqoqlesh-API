@@ -20,7 +20,7 @@ const getQuestion = async (req, res) => {
 const getQuestions = async (req, res) => {
   try {
     const round = parseInt(req.query.round);
-    const categoryID = await getCategoryObjectId(req, res);
+    const categoryID = await getCategoryObjectId(req);
     const questions = await QuestionModel.aggregate([
       { $match: { category: categoryID } },
       { $sample: { size: round } },
@@ -40,7 +40,7 @@ const getQuestions = async (req, res) => {
 const registerQuestion = async (req, res) => {
   try {
     const { text } = req.body;
-    const categoryID = await getCategoryObjectId(req, res);
+    const categoryID = await getCategoryObjectId(req);
     const answerID = await getAnswerObjectId(req, res);
     if (categoryID && answerID) {
       const question = new QuestionModel({
@@ -73,7 +73,7 @@ const getAnswerObjectId = async (req, res) => {
   }
 };
 
-const getCategoryObjectId = async (req, res) => {
+const getCategoryObjectId = async (req) => {
   try {
     const category = await CategoryModel.findOne({ name: req.params.category });
     if (category) {
