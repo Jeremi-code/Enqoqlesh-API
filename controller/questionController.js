@@ -61,15 +61,15 @@ const registerQuestion = async (req, res) => {
   }
 };
 
-const getAnswerObjectId = async (req, res) => {
+const getAnswerObjectId = async (req) => {
   try {
     const answer = await AnswerModel.findOne({ text: req.body.answer });
     if (answer) {
       return answer._id;
     }
-    res.status(404).json({ message: "Answer not found" });
+    return null
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.log(error.message)
   }
 };
 
