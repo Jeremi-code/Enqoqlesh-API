@@ -41,7 +41,7 @@ const registerQuestion = async (req, res) => {
   try {
     const { text } = req.body;
     const categoryID = await getCategoryObjectId(req);
-    const answerID = await getAnswerObjectId(req, res);
+    const answerID = await getAnswerObjectId(req);
     if (categoryID && answerID) {
       const question = new QuestionModel({
         text,
