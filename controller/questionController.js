@@ -36,12 +36,12 @@ const getQuestions = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
-const registerQuestion = async (req, res) => {
+const addQuestion = async (req, res) => {
   try {
-    const { text,answer } = req.body;
+    const { text, answer } = req.body;
     const categoryID = await getCategoryObjectId(req);
     // const answerID = await getAnswerObjectId(req);
-    if (categoryID ) {
+    if (categoryID) {
       const question = new QuestionModel({
         text,
         category: categoryID,
@@ -78,9 +78,9 @@ const getCategoryObjectId = async (req) => {
     if (category) {
       return category._id;
     }
-    return null
+    return null;
   } catch (error) {
-    console.log(error.message)
+    console.log(error.message);
   }
 };
 // const getAnswer = async (answerID) => {
@@ -106,11 +106,11 @@ const getCategoryObjectId = async (req) => {
 const updateQuestion = async (req, re) => {
   try {
     const id = req.params.id;
-    const { text,answer } = req.body;
+    const { text, answer } = req.body;
     const question = await QuestionModel.findById(id);
     if (question) {
       question.text = text || question.text;
-      question.answer = answer || question.text
+      question.answer = answer || question.text;
       question.updatedAt = new Date().toISOString();
       const updatedQuestion = await question.save();
       res.json({
@@ -142,7 +142,7 @@ const deleteQuestion = async (req, res) => {
 export {
   getQuestion,
   getQuestions,
-  registerQuestion,
+  addQuestion,
   updateQuestion,
   deleteQuestion,
 };
