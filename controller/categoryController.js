@@ -24,7 +24,7 @@ const getCategory = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
-const registerCategory = async (req, res) => {
+const addCategory = async (req, res) => {
   try {
     const { name, description } = req.body;
     const category = new CategoryModel({
@@ -83,7 +83,7 @@ const deleteCategory = async (req, res) => {
 export {
   getCategories,
   getCategory,
-  registerCategory,
+  addCategory,
   updateCategory,
   deleteCategory,
 };
