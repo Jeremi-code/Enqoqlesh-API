@@ -1,12 +1,12 @@
 import AdminModel from "../model/admin.js";
-import crypto from "crypto"
+import crypto from "crypto";
 const addAdmin = async (req, res) => {
   try {
     const { name } = req.body;
     const newAdmin = new AdminModel({
       name,
       apiKey: generateApiKey(),
-      createdAt: new Date().toISOString()
+      createdAt: new Date().toISOString(),
     });
     const addedAdmin = await newAdmin.save();
     res
@@ -17,15 +17,15 @@ const addAdmin = async (req, res) => {
   }
 };
 const generateApiKey = () => {
-  return crypto.randomBytes(32).toString('hex');
+  return crypto.randomBytes(32).toString("hex");
 };
 
 const removeAdmin = async (req, res) => {
   try {
-    const API_KEY = req.params.apiKey
+    const API_KEY = req.params.apiKey;
     const admin = await AdminModel.findOne({ apiKey: API_KEY });
     if (admin) {
-      AdminModel.deleteOne({ apiKey: API_KEY});
+      AdminModel.deleteOne({ apiKey: API_KEY });
       res.status(200).json({ message: "admin removed successfully" });
     } else {
       res.status(404).json({ message: "admin not found" });
@@ -35,4 +35,4 @@ const removeAdmin = async (req, res) => {
   }
 };
 
-export { addAdmin,removeAdmin }
+export { addAdmin, removeAdmin };

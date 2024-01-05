@@ -34,12 +34,10 @@ const addCategory = async (req, res) => {
       updatedAt: new Date().toISOString(),
     });
     const createdCategory = await category.save();
-    res
-      .status(201)
-      .json({
-        message: "Category created successfully ",
-        data: createdCategory,
-      });
+    res.status(201).json({
+      message: "Category created successfully ",
+      data: createdCategory,
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -53,12 +51,10 @@ const updateCategory = async (req, res) => {
       category.description = description || category.description;
       category.updatedAt = new Date().toISOString();
       const updatedCategory = await category.save();
-      res
-        .status(200)
-        .json({
-          message: "Category updated successfully ",
-          data: updatedCategory,
-        });
+      res.status(200).json({
+        message: "Category updated successfully ",
+        data: updatedCategory,
+      });
     } else {
       res.status(404).json({ message: "Category not found" });
     }
