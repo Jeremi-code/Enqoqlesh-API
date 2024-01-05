@@ -1,6 +1,5 @@
 import QuestionModel from "../model/question.js";
 import CategoryModel from "../model/category.js";
-import AnswerModel from "../model/answer.js";
 
 const getQuestion = async (req, res) => {
   try {
