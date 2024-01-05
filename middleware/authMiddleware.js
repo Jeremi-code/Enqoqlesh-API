@@ -1,4 +1,5 @@
 import AdminModel from "../model/admin.js";
+
 const adminRouteMiddleware = (req, res, next) => {
   const API_KEY = req.headers["api-key"];
   if (API_KEY !== process.env.API_KEY || API_KEY == undefined) {
@@ -8,6 +9,7 @@ const adminRouteMiddleware = (req, res, next) => {
   }
   next();
 };
+
 const defaultRouteMiddleware = async (req, res, next) => {
   const API_KEY = req.headers["api-key"];
   const admin = await AdminModel.findOne({ apiKey: API_KEY });
