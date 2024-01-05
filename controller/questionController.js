@@ -25,28 +25,28 @@ const getQuestions = async (req, res) => {
       { $match: { category: categoryID } },
       { $sample: { size: round } },
     ]);
-    const _questions = await Promise.all(
-      questions.map(async (question) => {
-        return await adjustQuestionObject(question);
-      })
-      );
+    // const _questions = await Promise.all(
+    //   questions.map(async (question) => {
+    //     return await adjustQuestionObject(question);
+    //   })
+    //   );
     res
       .status(200)
-      .json({ message: "Questions found successfully ", data: _questions });
+      .json({ message: "Questions found successfully ", data: questions });
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
 };
 const registerQuestion = async (req, res) => {
   try {
-    const { text } = req.body;
+    const { text,answer } = req.body;
     const categoryID = await getCategoryObjectId(req);
     const answerID = await getAnswerObjectId(req);
     if (categoryID && answerID) {
       const question = new QuestionModel({
         text,
         category: categoryID,
-        answer: answerID,
+        answer,
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
       });
@@ -61,17 +61,17 @@ const registerQuestion = async (req, res) => {
   }
 };
 
-const getAnswerObjectId = async (req) => {
-  try {
-    const answer = await AnswerModel.findOne({ text: req.body.answer });
-    if (answer) {
-      return answer._id;
-    }
-    return null
-  } catch (error) {
-    console.log(error.message)
-  }
-};
+// const getAnswerObjectId = async (req) => {
+//   try {
+//     const answer = await AnswerModel.findOne({ text: req.body.answer });
+//     if (answer) {
+//       return answer._id;
+//     }
+//     return null
+//   } catch (error) {
+//     console.log(error.message)
+//   }
+// };
 
 const getCategoryObjectId = async (req) => {
   try {
@@ -84,33 +84,34 @@ const getCategoryObjectId = async (req) => {
     console.log(error.message)
   }
 };
-const getAnswer = async (answerID) => {
-  try {
-    const answer = await AnswerModel.findById(answerID);
-    return answer.text;
-  } catch (error) {
-    console.log(error.message);
-  }
-};
+// const getAnswer = async (answerID) => {
+//   try {
+//     const answer = await AnswerModel.findById(answerID);
+//     return answer.text;
+//   } catch (error) {
+//     console.log(error.message);
+//   }
+// };
 
-const adjustQuestionObject = async (question) => {
-  let answer = await getAnswer(question.answer);
-  let questionObject = {
-    _id: question._id,
-    text: question.text,
-    category: question.category,
-    answer: answer,
-  };
-  return questionObject;
-};
+// const adjustQuestionObject = async (question) => {
+//   let answer = await getAnswer(question.answer);
+//   let questionObject = {
+//     _id: question._id,
+//     text: question.text,
+//     category: question.category,
+//     answer: answer,
+//   };
+//   return questionObject;
+// };
 
 const updateQuestion = async (req, re) => {
   try {
     const id = req.params.id;
-    const { text } = req.body;
+    const { text,answer } = req.body;
     const question = await QuestionModel.findById(id);
     if (question) {
       question.text = text || question.text;
+      question.answer = answer || question.text
       question.updatedAt = new Date().toISOString();
       const updatedQuestion = await question.save();
       res.json({
