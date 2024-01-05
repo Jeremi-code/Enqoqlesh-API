@@ -10,6 +10,7 @@ const getCategories = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
+
 const getCategory = async (req, res) => {
   try {
     const category = await CategoryModel.findOne({ name: req.params.category });
@@ -24,6 +25,7 @@ const getCategory = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
+
 const addCategory = async (req, res) => {
   try {
     const { name, description } = req.body;
@@ -42,6 +44,7 @@ const addCategory = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
 const updateCategory = async (req, res) => {
   try {
     const { name, description } = req.body;
@@ -62,6 +65,7 @@ const updateCategory = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
+
 const deleteCategory = async (req, res) => {
   try {
     const category = await CategoryModel.findOne({ name: req.params.category });
