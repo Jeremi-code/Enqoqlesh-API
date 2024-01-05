@@ -15,8 +15,7 @@ const QuestionSchema =  mongoose.Schema({
         required: true
     },
     answer: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref : AnswerModel,
+        type: String,
         required: true
     },
     createdAt : {
