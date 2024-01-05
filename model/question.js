@@ -1,6 +1,5 @@
 import mongoose from 'mongoose'
 import CategoryModel from '../model/category.js'
-import AnswerModel from '../model/answer.js'
 
 
 const QuestionSchema =  mongoose.Schema({
