@@ -16,6 +16,7 @@ const getQuestion = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
 const getQuestions = async (req, res) => {
   try {
     const round = parseInt(req.query.round);
@@ -36,6 +37,7 @@ const getQuestions = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
+
 const addQuestion = async (req, res) => {
   try {
     const { text, answer } = req.body;
@@ -124,6 +126,7 @@ const updateQuestion = async (req, re) => {
     res.status(404).json({ message: error.message });
   }
 };
+
 const deleteQuestion = async (req, res) => {
   try {
     const id = req.params.id;
