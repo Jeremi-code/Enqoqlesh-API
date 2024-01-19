@@ -25,11 +25,6 @@ const getQuestions = async (req, res) => {
       { $match: { category: categoryID } },
       { $sample: { size: round } },
     ]);
-    // const _questions = await Promise.all(
-    //   questions.map(async (question) => {
-    //     return await adjustQuestionObject(question);
-    //   })
-    //   );
     res
       .status(200)
       .json({ message: "Questions found successfully ", data: questions });
@@ -62,17 +57,6 @@ const addQuestion = async (req, res) => {
   }
 };
 
-// const getAnswerObjectId = async (req) => {
-//   try {
-//     const answer = await AnswerModel.findOne({ text: req.body.answer });
-//     if (answer) {
-//       return answer._id;
-//     }
-//     return null
-//   } catch (error) {
-//     console.log(error.message)
-//   }
-// };
 
 const getCategoryObjectId = async (req) => {
   try {
@@ -85,25 +69,7 @@ const getCategoryObjectId = async (req) => {
     console.log(error.message);
   }
 };
-// const getAnswer = async (answerID) => {
-//   try {
-//     const answer = await AnswerModel.findById(answerID);
-//     return answer.text;
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// };
 
-// const adjustQuestionObject = async (question) => {
-//   let answer = await getAnswer(question.answer);
-//   let questionObject = {
-//     _id: question._id,
-//     text: question.text,
-//     category: question.category,
-//     answer: answer,
-//   };
-//   return questionObject;
-// };
 
 const updateQuestion = async (req, re) => {
   try {
