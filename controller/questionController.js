@@ -37,7 +37,6 @@ const addQuestion = async (req, res) => {
   try {
     const { text, answer } = req.body;
     const categoryID = await getCategoryObjectId(req);
-    // const answerID = await getAnswerObjectId(req);
     if (categoryID) {
       const question = new QuestionModel({
         text,
